@@ -13,8 +13,11 @@ class PostService {
         })
             .then(response => response.json())
             .then(posts => {
+
                 const UserPosts = posts.map(post => new UserPost(post))
                 return UserPosts
+
+
             })
 
 
@@ -22,5 +25,4 @@ class PostService {
 }
 
 export const postservices = new PostService
-
 

@@ -5,6 +5,9 @@ export class UserPost {
         this.userId = user.userId;
         this.videoUrl = user.videoUrl
         this.sid = user.sid
+        this.url = user.imageUrl
+        this.isPublic = user.isPublic
+        this.text = user.text
     }
 
 }
