@@ -26,33 +26,29 @@ export class PostFeed extends React.Component {
             })
 
     }
-    renderSwitch(param) {
-        switch (param.type) {
+    renderSwitch(post) {
+        switch (post.type) {
             case 'video':
-                return <iframe src={param.videoUrl}></iframe>;
+                return <iframe src={post.videoUrl}></iframe>;
             case 'image':
-                return <img src={param.url} />;
+                return <img src={post.url} />;
             default:
-                return <p>{param.text}</p>
+                return <p>{post.text}</p>
         }
 
     }
 
 
     render() {
-        const posts = this.state.posts
-        console.log(posts);
+        const posts = this.state.posts;
 
-
-
-        if (!posts)
-
+        if (!posts) {
             return <p>Nothing in feed..</p>
-
+        }
 
         return (
             posts.map(post =>
-                <div className='post'>
+                <div className='post' id={post.id}>
                     {this.renderSwitch(post)}
                 </div>
 
