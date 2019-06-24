@@ -8,7 +8,8 @@ export class Users extends React.Component {
         super(props);
 
         this.state = {
-            users: []
+            users: [],
+            onChange: null
 
         }
     }
@@ -22,37 +23,85 @@ export class Users extends React.Component {
         UserService.fetchUsers()
             .then(user => {
                 this.setState({
-                    users: user
+                    users: user,
+
                 })
             })
 
     }
+
+    onChange(event) {
+
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+
 
     render() {
 
         const users = this.state.users
         console.log(users)
 
+
+
+        if (!users) {
+            return <p>Loading page...</p>
+        }
+
         return (
-
-            <div>
-                <div className="profile-page">
-                    <img className="responsive-img" src="https://www.clarifybd.com/wp-content/uploads/2016/03/client-icon-blue.png" width="300x" height="300px" />
-                    <h4>Name Surname</h4>
-                    <div className="textProfile">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div className="peoplePage">
+                <nav>
+                    <div className="nav-wrapper">
+                        <form>
+                            <div className="input-field">
+                                <input id="search" type="search" value="" />
+                                <label className="label-icon" for="search"><i className="material-icons">search</i></label>
+                                <i className="material-icons">x</i>
+                            </div>
+                        </form>
                     </div>
-                    <input type="button" value="Comments"></input>
-                    <input type="button" value="Comments"></input>
-                </div >
+                </nav>
 
+
+                <div>
+                    {users.map(user => (
+
+                        <div className="col s12 m8 offset-m2 l6 offset-l3">
+                            <div className="card-panel grey lighten-5 z-depth-1">
+                                <div className="row valign-wrapper">
+                                    <div className="col s2">
+                                        <img src={user.avatarUrl} alt="" class="circle responsive-img" />
+                                    </div>
+                                    <div className="col s10">
+                                        <span className="black-text">
+                                            {user.name()}
+                                        </span>
+                                        <div>
+                                            <span>{user.about.bio}</span>
+                                        </div>
+
+                                        <div>
+                                            <span className="lastpost">Last post at </span>
+                                            <span>{user.getUserTime()}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    ))
+                    }
+
+                </div>
             </div>
-
         )
 
     }
 
 }
+
 
 
 

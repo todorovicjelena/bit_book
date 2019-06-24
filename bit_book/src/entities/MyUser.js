@@ -10,4 +10,17 @@ export class MyUser {
         this.nameLast = apiUser.name.last;
         this.prefix = apiUser.name.prefix;
     }
+
+    name() {
+        return this.nameFirst + " " + this.nameLast
+    }
+
+    getUserTime() {
+        const dateFull = new Date(this.createdAt);
+        const time = dateFull.getHours();
+        const minutes = dateFull.getMinutes();
+        return time + ":" + minutes
+
+    }
 }
+
