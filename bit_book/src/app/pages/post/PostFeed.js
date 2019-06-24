@@ -13,6 +13,7 @@ export class PostFeed extends React.Component {
         }
     }
     componentDidMount() {
+
         this.getPosts()
     }
     getPosts() {
