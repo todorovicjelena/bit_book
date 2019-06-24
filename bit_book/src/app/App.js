@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from '../app/Header';
+import { MyProfile } from './pages/profil/MyProfile';
 
 
 //if not login display login.page 
@@ -11,9 +12,10 @@ class App extends React.Component {
 
 
     return (
-
-      <Header />
-
+      <>
+        <Header />
+        <MyProfile />
+      </>
     )
   }
 }
