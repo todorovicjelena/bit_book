@@ -12,10 +12,10 @@ class App extends React.Component {
 
 
     return (
-
-      <Header />
-      <PostFeed />
-
+      <>
+        <Header />
+        <PostFeed />
+      </>
     )
   }
 }
