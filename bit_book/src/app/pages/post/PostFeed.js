@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { postservices } from '../../../services/PostService';
+
 
 
 export class PostFeed extends React.Component {
@@ -9,8 +11,14 @@ export class PostFeed extends React.Component {
     }
     componentDidMount() {
 
+        this.getPosts()
     }
     getPosts() {
+        postservices.FetchPosts()
+            .then(posts => {
+                console.log(posts);
+
+            })
 
     }
 
@@ -19,3 +27,4 @@ export class PostFeed extends React.Component {
         return <p>feed page</p>
     }
 }
+
