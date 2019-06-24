@@ -8,7 +8,7 @@ export class PostFeed extends React.Component {
         this.state = {}
     }
     componentDidMount() {
-        getPosts()
+
     }
     getPosts() {
 

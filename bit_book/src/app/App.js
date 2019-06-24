@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '../app/Header';
 import { PostFeed } from './pages/post/PostFeed'
+import { MyProfile } from './pages/profil/MyProfile';
 
 
 //if not login display login.page 
@@ -12,10 +13,14 @@ class App extends React.Component {
 
 
     return (
+      <>
+        <Header />
+        <PostFeed />
 
-      <Header />
-      <PostFeed />
 
+
+        <MyProfile />
+      </>
     )
   }
 }
