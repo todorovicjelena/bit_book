@@ -14,6 +14,10 @@ export class PostFeed extends React.Component {
     }
     getPosts() {
         postservices.FetchPosts()
+            .then(posts => {
+                console.log(posts);
+
+            })
 
     }
 

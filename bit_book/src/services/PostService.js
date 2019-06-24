@@ -1,9 +1,9 @@
-import { PostFeed } from '../app/pages/post/PostFeed'
+import { UserPost } from '../entities/UserPost'
 
 class PostService {
     FetchPosts = () => {
         const request = 'https://book-api.hypetech.xyz/v1/posts'
-        fetch(request, {
+        return fetch(request, {
             headers: {
 
                 'Content-Type': 'application / json',
@@ -13,8 +13,8 @@ class PostService {
         })
             .then(response => response.json())
             .then(posts => {
-                console.log(posts);
-
+                const UserPosts = posts.map(post => new UserPost(post))
+                return UserPosts
             })
 
 
