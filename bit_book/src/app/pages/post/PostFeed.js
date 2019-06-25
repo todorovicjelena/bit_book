@@ -48,9 +48,25 @@ export class PostFeed extends React.Component {
 
         return (
             posts.map(post =>
-                <div className='post' id={post.id}>
-                    {this.renderSwitch(post)}
-                    <Link to={`/post/${post.id}`}><div> {this.renderSwitch(post)}</div> </Link>
+                <div id={post.id}>
+
+                    <Link to={`/post/${post.id}`}>
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card">
+
+                                    <div className='card-content'>
+                                        {this.renderSwitch(post)}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </Link>
                 </div>
 
             )
