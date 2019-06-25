@@ -42,7 +42,7 @@ export class RegisterPage extends React.Component {
 
 
 
-        return <form >
+        return <form onSubmit={this.handleSubmit}>
             <label> Username:
             <input type="text" value={this.state.username} onChange={this.handleUsername} />
 
