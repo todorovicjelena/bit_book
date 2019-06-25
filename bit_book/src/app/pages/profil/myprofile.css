@@ -3,7 +3,6 @@
 }
 
 .textProfile  {
-
     margin-left: 300px;
     margin-right: 300px;
 }
@@ -13,6 +12,23 @@
     margin-left: 300px;
     margin-right: 300px;
     margin-top: 50px;
-    
+  
 }
 
+
+.userDetails {
+    padding-top: 150px;
+}
+
+.postsNumb span{
+   border: none;
+    border-radius: 15px;
+    padding: 3px;
+    background-color: rgb(236, 236, 236);
+    color: black;
+}
+
+.postsNumb .circle {
+     background-color: blueviolet;
+     border-radius:80%;
+}
