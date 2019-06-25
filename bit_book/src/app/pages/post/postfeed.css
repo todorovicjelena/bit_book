@@ -1,8 +1,24 @@
-.post{
+/* .post{
     height: 150px;
     width: 80%;
     margin: 0 auto;
     padding: 50px;
     border: black solid 1px
+} */
+.postcard{
+    height: 150px;
+    widows: 200px;
+    margin:0 auto;
+}
+
+.card {
+    height: 300px;
+    width: 60%;
+    margin: 0 auto;
 }
  
+.card-content {
+   width: 300px;
+   line-height: 300px;
+
+}
