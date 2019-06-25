@@ -5,6 +5,7 @@ import { PostFeed } from './pages/post/PostFeed'
 import { Users } from '../app/pages/profil/Users'
 import { UserDetails } from '../app/pages/profil/UserDetails'
 import { PostDetails } from '../app/pages/post/PostDetails'
+import { Login } from './pages/Login'
 
 
 //if not login display login.page 
@@ -19,11 +20,12 @@ class App extends React.Component {
       <>
         <Header />
         <Switch>
+          <Route path="/login/" component={Login} />
           <Route path='/people/:peopleId' component={UserDetails} />
           <Route path='/people' component={Users} />
           <Route path='/post/:postId' component={PostDetails} />
           <Route path='/posts/' component={PostFeed} />
-          <Redirect to='/posts/' />
+          <Redirect to='/login/' />
         </Switch>
       </>
     )
