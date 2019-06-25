@@ -8,14 +8,19 @@ export class UserDetails extends React.Component {
         this.state = {
 
 
+
         }
 
     }
+
+
+
     render() {
 
         return (
 
-            <h1>Details Page</h1>
+            <p>details page</p>
+
         )
     }
 

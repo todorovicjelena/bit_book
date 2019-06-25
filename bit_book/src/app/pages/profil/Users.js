@@ -52,6 +52,7 @@ export class Users extends React.Component {
 
         return (
             <div className="peoplePage">
+
                 <nav>
                     <div className="nav-wrapper">
                         <form>
@@ -63,6 +64,7 @@ export class Users extends React.Component {
                         </form>
                     </div>
                 </nav>
+
 
 
                 <div>
