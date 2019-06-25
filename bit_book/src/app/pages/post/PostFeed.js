@@ -29,9 +29,9 @@ export class PostFeed extends React.Component {
     renderSwitch(post) {
         switch (post.type) {
             case 'video':
-                return <iframe src={post.videoUrl}></iframe>;
+                return <iframe src={post.videoUrl}> </iframe>
             case 'image':
-                return <img src={post.url} />;
+                return <img src={post.url} />
             default:
                 return <p>{post.text}</p>
         }
@@ -50,6 +50,7 @@ export class PostFeed extends React.Component {
             posts.map(post =>
                 <div className='post' id={post.id}>
                     {this.renderSwitch(post)}
+                    <Link to={`/post/${post.id}`}><div> {this.renderSwitch(post)}</div> </Link>
                 </div>
 
             )

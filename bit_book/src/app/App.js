@@ -1,7 +1,10 @@
 import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { Header } from '../app/Header';
 import { PostFeed } from './pages/post/PostFeed'
 import { Users } from '../app/pages/profil/Users'
+import { UserDetails } from '../app/pages/profil/UserDetails'
+import { PostDetails } from '../app/pages/post/PostDetails'
 
 
 //if not login display login.page 
@@ -15,10 +18,13 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <PostFeed />
-
-
-        <Users />
+        <Switch>
+          <Route path='/people/:peopleId' component={UserDetails} />
+          <Route path='/people' component={Users} />
+          <Route path='/post/:postId' component={PostDetails} />
+          <Route path='/posts/' component={PostFeed} />
+          <Redirect to='/posts/' />
+        </Switch>
       </>
     )
   }
@@ -26,3 +32,4 @@ class App extends React.Component {
 
 
 export default App;
+
