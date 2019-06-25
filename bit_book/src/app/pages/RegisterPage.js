@@ -11,8 +11,26 @@ export class RegisterPage extends React.Component {
         }
         this.handleUsername = this.handleUsername.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
-        this.handlePassword = this.handlePassword.bind(this)
+        this.handlePassword = this.handlePassword.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
+
     }
+
+    handleSubmit() {
+        const username = this.state.username
+        const email = this.state.email
+        const pass = this.state.pass
+
+
+
+        this.setState({
+            username: '',
+            email: '',
+            pass: ''
+
+        })
+    }
+
     handleUsername(event) {
         this.setState({
             username: event.target.value
