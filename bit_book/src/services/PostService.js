@@ -34,7 +34,6 @@ class PostService {
         })
             .then(response => response.json())
             .then(post => {
-
                 const UserPosts = new UserPost(post)
                 return UserPosts
             })

@@ -5,7 +5,9 @@ import { postservices } from '../../../services/PostService'
 export class PostDetails extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            post: []
+        }
     }
     componentDidMount() {
         this.getsingleUser()
@@ -14,15 +16,37 @@ export class PostDetails extends React.Component {
         const id = this.props.match.params.postId
         postservices.FetchSinglePosts(id)
             .then(post => {
-                console.log(post);
+                this.setState({ post })
 
             })
-
+    }
+    renderSwitch(post) {
+        switch (post.type) {
+            case 'video':
+                return <iframe src={post.videoUrl}> </iframe>
+            case 'image':
+                return <img src={post.url} />
+            default:
+                return <p>{post.text}</p>
+        }
 
     }
 
+
+
     render() {
-        return <p>this is postdetail page</p>
+        const post = this.state.post
+        console.log(post);
+
+        if (!post) {
+
+            return <p>loading page</p>
+        }
+        return (
+            <>
+                <div className="content">{this.renderSwitch(post)}</div>
+            </>
+        )
 
     }
 }
