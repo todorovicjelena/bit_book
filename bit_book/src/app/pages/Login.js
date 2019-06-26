@@ -73,17 +73,18 @@ export class Login extends React.Component {
                             </div>
 
                             <div className="rowPass">
+                                <div className="pass email input-field col s12">
+                                    <input id="email" type="email" className="validate" value={this.state.email} onChange={this.handleEmail} />
+                                    <label>Email</label>
+                                </div>
+
+                            </div>
+                            <div className="rowEmail">
                                 <div className="pass input-field col s12">
                                     <input type="password" className="validate" value={this.state.password} onChange={this.handlePassword} />
                                     <label>Password</label>
                                 </div>
-                            </div>
-                            <div className="rowEmail">
-                                <div className="pass email input-field col s12">
-                                    <input id="email" type="email" className="validate" value={this.state.email} onChange={this.handleEmail} />
-                                    <label>Email</label>
 
-                                </div>
                                 <div className="input-field col s6">
                                     <input id="last_name" type="button" className="loginGo" value="Login" />
                                 </div>
