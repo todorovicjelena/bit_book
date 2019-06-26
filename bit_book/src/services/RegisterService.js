@@ -8,7 +8,6 @@ class RegisterService {
             password: pass
         }
         console.log(body);
-        const myStorage = window.localStorage;
 
 
         const register = 'https://book-api.hypetech.xyz/v1/auth/register'
@@ -24,7 +23,7 @@ class RegisterService {
             .then(response => response.json())
             .then(res => {
                 localStorage.setItem('postToken', res.accessToken)
-                localStorage.removeItem('postToken')
+
             })
 
 
@@ -51,19 +50,19 @@ class RegisterService {
         })
 
             .then(response => response.json())
-            .then(res => {
-                myStorage.setItem('postToken', res.accessToke)
+        // .then(res => {
+        //     myStorage.setItem('postToken', res.accessToke)
 
-            })
-
-
+        // })
 
 
 
     }
 
+}
 
-    export const registerService = new RegisterService
+
+export const registerService = new RegisterService
 
 
 
