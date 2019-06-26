@@ -5,9 +5,12 @@ export class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+
+
             name: '',
             email: '',
             password: '',
+
             errors: {}
 
         }
@@ -23,8 +26,8 @@ export class RegisterPage extends React.Component {
         if (!this.validateRegister()) {
             return
         }
-        const data = this.state
-        registerService.fetchRegister(data)
+        const { name, email, password } = this.state
+        registerService.fetchRegister(name, email, password)
 
 
 
@@ -43,6 +46,7 @@ export class RegisterPage extends React.Component {
         const email = this.state.email;
         const pass = this.state.password;
         const errors = {};
+
         if (name.length < 5) {
             errors.name = 'invalid input'
         }
@@ -53,6 +57,8 @@ export class RegisterPage extends React.Component {
             errors.password = 'password must have at least 5 characters'
         }
         this.setState({ errors })
+
+
         return Object.keys(errors).length === 0
 
     }
@@ -80,15 +86,13 @@ export class RegisterPage extends React.Component {
 
 
     render() {
-        //  console.log(this.state.username);
-        // console.log(this.state.email);
-        //  console.log(this.state.pass);
+
         const { errors } = this.state
 
 
         return <form onSubmit={this.handleSubmit}>
             <label> Username:
-            <input type="text" value={this.state.username} onChange={this.handleUsername} />
+            <input type="text" value={this.state.name} onChange={this.handleUsername} />
                 <p>{errors.name}</p>
 
             </label>
@@ -99,7 +103,7 @@ export class RegisterPage extends React.Component {
 
             </label>
             <label>pass:
-                <input type='password' value={this.state.pass} onChange={this.handlePassword} />
+                <input type='password' value={this.state.password} onChange={this.handlePassword} />
                 <p>{errors.password}</p>
 
             </label>

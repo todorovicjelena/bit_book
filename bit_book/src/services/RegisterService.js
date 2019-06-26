@@ -2,12 +2,18 @@ import React from 'react'
 
 
 class RegisterService {
-    fetchRegister = (data) => {
-        const body = data
+    fetchRegister = (name, email, pass) => {
+        const body = {
+            name: name,
+            email: email,
+            password: pass
+        }
         console.log(body);
+        const myStorage = window.localStorage;
+
 
         const register = 'https://book-api.hypetech.xyz/v1/auth/register'
-        fetch(register, {
+        return fetch(register, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -16,8 +22,15 @@ class RegisterService {
             }
 
         })
+            .then(response => response.json())
+            .then(res => {
+                localStorage.setItem('postToken', res.accessToken)
+                console.log(myStorage);
+
+            })
 
     }
+
 
 
 
