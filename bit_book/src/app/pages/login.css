@@ -1,4 +1,4 @@
-.loginButton{
+/* .loginButton{
     padding: 5px;
     width:150px;
     background-color: rgb(187, 187, 187);
@@ -36,3 +36,43 @@
 .bodyLogin {
     padding: 30px;
 }
+
+ */
+
+ .wholeLoginPage {
+     width: 30%;
+     border: 1px solid black;
+     border-radius: 5px;
+     margin: 0 auto;
+     margin-right: 180px;
+     margin-top: 200px;
+     
+ }
+
+ .loginValidate {
+     width: 50%;
+     background-color: rgb(160, 160, 160);
+
+ }
+ .registerValidate {
+    width: 50%;
+ }
+
+ .loginGo {
+    margin-left:200px;
+    width: 50%;
+ }
+
+ .rowLoginRegister {
+     margin-left: 90px;
+   
+    
+ }
+
+ .textOnFirstPage {
+     width: 40%;
+     position: absolute;
+     margin-top: 200px;
+     margin-left: 180px;
+ }
+

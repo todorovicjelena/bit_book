@@ -7,38 +7,32 @@ export class Login extends React.Component {
         super(props);
 
         this.state = {
-            username: '',
             email: '',
-            pass: ''
+            password: ''
 
         }
 
 
-        this.handleUsername = this.handleUsername.bind(this);
+
         this.handleEmail = this.handleEmail.bind(this);
-        this.handlePassword = this.handleUsername.bind(this);
+        this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
     handleSubmit() {
-        const username = this.state.username
+
         const email = this.state.email
-        const pass = this.state.pass
+        const password = this.state.password
 
         this.setState({
-            username: '',
+
             email: '',
-            pass: ''
+            password: ''
         })
 
     }
 
-    handleUsername(event) {
-        this.setState({
-            username: event.target.value
-        })
-    }
 
     handleEmail(event) {
         this.setState({
@@ -48,34 +42,57 @@ export class Login extends React.Component {
 
     handlePassword(event) {
         this.setState({
-            pass: event.target.value
+            password: event.target.value
         })
     }
 
 
     render() {
-
+        console.log(this.state.email)
+        console.log(this.state.password)
 
         return (
 
             <>
-                <p>BitBooK Login</p>
-                <div className="loginPage" >
-                    <div className="buttons">
-                        <input className="loginButton" type="button" value="Login"></input>
-                        <input className="registerButton" type="button" value="Register"></input>
+                <div className="textOnFirstPage">
+                    <h3>BitBook Login</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+
+                <div className="wholeLoginPage">
+                    <div className="row">
+                        <form className="col s12">
+                            <div className="rowLoginRegister">
+                                <div className="login input-field col s6">
+                                    <input id="last_name" type="button" className="loginValidate" value="Login" />
+                                </div>
+                                <div className="register input-field col s6">
+                                    <input id="last_name" type="button" className="registerValidate" value="Register" />
+                                </div>
+                            </div>
+
+                            <div className="rowPass">
+                                <div className="pass input-field col s12">
+                                    <input type="password" className="validate" value={this.state.password} onChange={this.handlePassword} />
+                                    <label>Password</label>
+                                </div>
+                            </div>
+                            <div className="rowEmail">
+                                <div className="pass email input-field col s12">
+                                    <input id="email" type="email" className="validate" value={this.state.email} onChange={this.handleEmail} />
+                                    <label>Email</label>
+
+                                </div>
+                                <div className="input-field col s6">
+                                    <input id="last_name" type="button" className="loginGo" value="Login" />
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
-                    <div className="bodyLogin"> <span>email </span>
-                        <input type="" placeholder="Email Address" value={this.state.email} onChange={this.handleEmail}></input>
-                        <p className="error">Error</p>
-                        <span>pass </span>
-                        <input type="" placeholder="Password" value={this.state.pass} onChange={this.handlePassword}></input>
-                    </div>
-                    <input className="loginToNextPage" type="button" value="Submit"></input>
-                    <p className="error">Unable to login, invalid credentials</p>
                 </div>
             </>
-
         )
     }
 }
