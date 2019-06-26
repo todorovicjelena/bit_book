@@ -6,6 +6,7 @@ import { Users } from '../app/pages/profil/Users'
 import { UserDetails } from '../app/pages/profil/UserDetails'
 import { PostDetails } from '../app/pages/post/PostDetails'
 import { Login } from './pages/Login'
+import { RegisterPage } from '../app/pages/RegisterPage'
 
 
 //if not login display login.page 
@@ -21,6 +22,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route path="/login/" component={Login} />
+          <Route path='/register/' component={RegisterPage} />
           <Route path='/people/:peopleId' component={UserDetails} />
           <Route path='/people' component={Users} />
           <Route path='/post/:postId' component={PostDetails} />
