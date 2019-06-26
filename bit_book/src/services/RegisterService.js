@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 
 class RegisterService {
@@ -25,7 +25,7 @@ class RegisterService {
             .then(response => response.json())
             .then(res => {
                 localStorage.setItem('postToken', res.accessToken)
-                localStorage.removeItem('postToken')
+
             })
 
 

@@ -17,7 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     const registerToken = localStorage.getItem('postToken')
-    const token = registerToken ? registerToken : null
+    const token = registerToken ? registerToken : ''
     console.log(token);
 
     this.state = {
