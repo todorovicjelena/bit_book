@@ -1,5 +1,6 @@
 import React from 'react';
-import './login.css'
+import './login.css';
+import { registerService } from '../../services/RegisterService'
 
 
 export class Login extends React.Component {
@@ -20,16 +21,14 @@ export class Login extends React.Component {
 
     }
 
-    handleSubmit() {
 
-        const email = this.state.email
-        const password = this.state.password
+    handleSubmit(event) {
+        event.preventDefault();
 
-        this.setState({
 
-            email: '',
-            password: ''
-        })
+        const { email, password } = this.state
+        console.log(email);
+        registerService.fetchLogin(email, password)
 
     }
 
@@ -62,7 +61,7 @@ export class Login extends React.Component {
 
                 <div className="wholeLoginPage">
                     <div className="row">
-                        <form className="col s12">
+                        <form onSubmit={this.handleSubmit} className="form col s12">
                             <div className="rowLoginRegister">
                                 <div className="login input-field col s6">
                                     <input id="last_name" type="button" className="loginValidate" value="Login" />
@@ -86,7 +85,7 @@ export class Login extends React.Component {
                                 </div>
 
                                 <div className="input-field col s6">
-                                    <input id="last_name" type="button" className="loginGo" value="Login" />
+                                    <input id="last_name" type="submit" className="loginGo" value="Login" />
                                 </div>
                             </div>
 

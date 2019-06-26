@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 class RegisterService {
@@ -31,9 +30,40 @@ class RegisterService {
 
     }
 
-}
+    fetchLogin = (email, password) => {
 
-export const registerService = new RegisterService
+        const body = {
+            email: email,
+            password: password
+        }
+        console.log(body);
+
+        const myStorage = window.localStorage;
+
+        const login = 'https://book-api.hypetech.xyz/v1/auth/login'
+        return fetch(login, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': 'B1tD3V'
+            }
+        })
+
+            .then(response => response.json())
+            .then(res => {
+                myStorage.setItem('postToken', res.accessToke)
+
+            })
+
+
+
+
+
+    }
+
+
+    export const registerService = new RegisterService
 
 
 
