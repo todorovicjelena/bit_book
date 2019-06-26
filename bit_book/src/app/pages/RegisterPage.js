@@ -1,12 +1,14 @@
 import React from 'react'
+import { registerService } from '../../services/RegisterService'
 
 export class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            name: '',
             email: '',
-            pass: ''
+            password: '',
+            errors: {}
 
         }
         this.handleUsername = this.handleUsername.bind(this);
@@ -16,24 +18,48 @@ export class RegisterPage extends React.Component {
 
     }
 
-    handleSubmit() {
-        const username = this.state.username
-        const email = this.state.email
-        const pass = this.state.pass
+    handleSubmit(event) {
+        event.preventDefault();
+        if (!this.validateRegister()) {
+            return
+        }
+        const data = this.state
+        registerService.fetchRegister(data)
 
 
 
-        this.setState({
-            username: '',
-            email: '',
-            pass: ''
 
-        })
+
+        // this.setState({
+        //     name: '',
+        //     email: '',
+        //     pass: ''
+
+        // })
+    }
+
+    validateRegister() {
+        const name = this.state.name;
+        const email = this.state.email;
+        const pass = this.state.password;
+        const errors = {};
+        if (name.length < 5) {
+            errors.name = 'invalid input'
+        }
+        if (!email.includes('@')) {
+            errors.email = 'invalid email input'
+        }
+        if (pass.length < 5) {
+            errors.password = 'password must have at least 5 characters'
+        }
+        this.setState({ errors })
+        return Object.keys(errors).length === 0
+
     }
 
     handleUsername(event) {
         this.setState({
-            username: event.target.value
+            name: event.target.value
         })
 
 
@@ -46,7 +72,7 @@ export class RegisterPage extends React.Component {
     }
     handlePassword(event) {
         this.setState({
-            pass: event.target.value
+            password: event.target.value
         })
 
     }
@@ -54,24 +80,27 @@ export class RegisterPage extends React.Component {
 
 
     render() {
-        console.log(this.state.username);
-        console.log(this.state.email);
-        console.log(this.state.pass);
-
+        //  console.log(this.state.username);
+        // console.log(this.state.email);
+        //  console.log(this.state.pass);
+        const { errors } = this.state
 
 
         return <form onSubmit={this.handleSubmit}>
             <label> Username:
             <input type="text" value={this.state.username} onChange={this.handleUsername} />
+                <p>{errors.name}</p>
 
             </label>
 
             <label>
                 Email:<input type="text" value={this.state.email} onChange={this.handleEmail} />
+                <p>{errors.email}</p>
 
             </label>
             <label>pass:
                 <input type='password' value={this.state.pass} onChange={this.handlePassword} />
+                <p>{errors.password}</p>
 
             </label>
 
