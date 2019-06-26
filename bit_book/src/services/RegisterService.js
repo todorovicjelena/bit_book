@@ -25,18 +25,18 @@ class RegisterService {
             .then(response => response.json())
             .then(res => {
                 localStorage.setItem('postToken', res.accessToken)
-                console.log(myStorage);
-
+                localStorage.removeItem('postToken')
             })
 
+
     }
-
-
-
-
-
-
 
 }
 
 export const registerService = new RegisterService
+
+
+
+
+
+

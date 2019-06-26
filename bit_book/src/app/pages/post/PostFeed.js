@@ -13,6 +13,7 @@ export class PostFeed extends React.Component {
         }
     }
     componentDidMount() {
+        localStorage.removeItem('postToken')
 
         this.getPosts()
     }

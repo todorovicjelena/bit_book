@@ -14,20 +14,45 @@ import { RegisterPage } from '../app/pages/RegisterPage'
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    const registerToken = localStorage.getItem('postToken')
+    const token = registerToken ? registerToken : null
+    console.log(token);
+
+    this.state = {
+      token
+    }
+  }
   render() {
+    console.log(window.localStorage);
+    const { token } = this.state
+
+    if (token === null) {
+      return (
+        <>
+          <Switch>
+
+            <Route path="/login/" component={Login} />
+            <Route path='/register/' component={RegisterPage} />
+            <Redirect to='/register' />
+          </Switch>
+        </>
+      )
 
 
+    }
     return (
+
       <>
+
         <Header />
         <Switch>
-          <Route path="/login/" component={Login} />
-          <Route path='/register/' component={RegisterPage} />
           <Route path='/people/:peopleId' component={UserDetails} />
           <Route path='/people' component={Users} />
           <Route path='/post/:postId' component={PostDetails} />
           <Route path='/posts/' component={PostFeed} />
-          <Redirect to='/login/' />
+          <Redirect to='/people' />
         </Switch>
       </>
     )
