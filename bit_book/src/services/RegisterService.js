@@ -23,7 +23,6 @@ class RegisterService {
             .then(response => response.json())
             .then(res => {
                 localStorage.setItem('postToken', res.accessToken)
-
             })
 
 

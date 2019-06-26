@@ -23,11 +23,19 @@ export class RegisterPage extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
         if (!this.validateRegister()) {
             return
         }
+
         const { name, email, password } = this.state
         registerService.fetchRegister(name, email, password)
+            .then(() => {
+                // redirect to login
+            })
+            .catch(error => {
+                // show error on screen
+            })
 
 
 
