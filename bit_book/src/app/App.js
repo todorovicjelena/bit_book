@@ -25,7 +25,7 @@ class App extends React.Component {
     }
   }
   render() {
-    console.log(window.localStorage);
+
     const { token } = this.state
 
     if (token === null) {
@@ -33,8 +33,8 @@ class App extends React.Component {
         <>
           <Switch>
 
-            <Route path="/login/" component={Login} />
             <Route path='/register/' component={RegisterPage} />
+            <Route path="/login/" component={Login} />
             <Redirect to='/register' />
           </Switch>
         </>
