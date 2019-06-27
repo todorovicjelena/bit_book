@@ -1,4 +1,4 @@
-
+import { MyComment } from '../entities/MyComment'
 
 class CommentService {
     fetchService(id) {
@@ -13,8 +13,9 @@ class CommentService {
 
         })
             .then(response => response.json())
-            .then(res => {
-                console.log(res);
+            .then(comments => {
+                const userComments = comments.map(comment => new MyComment(comment))
+                return userComments
 
             })
 

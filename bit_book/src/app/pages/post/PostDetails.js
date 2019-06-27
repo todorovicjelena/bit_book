@@ -7,7 +7,8 @@ export class PostDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            post: []
+            post: [],
+            comment: []
         }
     }
     componentDidMount() {
@@ -27,6 +28,12 @@ export class PostDetails extends React.Component {
         console.log(id);
 
         commentservices.fetchService(id)
+            .then(comment => {
+                this.setState({
+                    comment
+                })
+            })
+
 
 
     }
@@ -45,14 +52,28 @@ export class PostDetails extends React.Component {
 
 
     render() {
-        const post = this.state.post
-        if (!post) {
+        const { post, comment } = this.state
+        console.log(comment);
+
+
+        if (!post && !comment) {
 
             return <p>loading page</p>
         }
         return (
             <>
                 <div className="content">{this.renderSwitch(post)}</div>
+                <div>
+                    {
+                        comment.map(com => (
+                            <div>
+
+                                <p>{com.body} </p>
+                            </div>
+                        ))
+
+                    }
+                </div>
             </>
         )
 
