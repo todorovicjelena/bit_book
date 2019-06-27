@@ -20,12 +20,15 @@ class RegisterService {
             }
 
         })
-            .then(response => response.json())
-            .then(res => {
-                localStorage.setItem('postToken', res.accessToken)
+            .then(response => {
+                console.log(response.status);
+
+                if (response.status > 400) {
+                    return Promise.reject('error, try again')
+                }
+                return response.json()
+
             })
-
-
     }
 
     fetchLogin = (email, password) => {
@@ -36,7 +39,7 @@ class RegisterService {
         }
         console.log(body);
 
-        const myStorage = window.localStorage;
+
 
         const login = 'https://book-api.hypetech.xyz/v1/auth/login'
         return fetch(login, {
@@ -47,12 +50,16 @@ class RegisterService {
                 'x-api-key': 'B1tD3V'
             }
         })
+            .then(response => {
+                console.log(response.status);
 
-            .then(response => response.json())
-        // .then(res => {
-        //     myStorage.setItem('postToken', res.accessToke)
+                if (response.status > 400) {
+                    return Promise.reject('error, try again')
+                }
+                return response.json()
 
-        // })
+            })
+
 
 
 

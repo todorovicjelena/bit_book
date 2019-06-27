@@ -16,11 +16,11 @@ import { RegisterPage } from '../app/pages/RegisterPage'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    const registerToken = localStorage.getItem('postToken')
+
+    const registerToken = localStorage.getItem('accessToken')
     const token = registerToken ? registerToken : null
     console.log(token);
     console.log(registerToken);
-    
 
     this.state = {
       token
@@ -29,8 +29,8 @@ class App extends React.Component {
   render() {
 
     const { token } = this.state
-     console.log(token);
-     
+    console.log(token);
+
     if (!token) {
       return (
         <>
