@@ -1,6 +1,9 @@
 import React from 'react'
 import { postservices } from '../../../services/PostService'
 import { commentservices } from '../../../services/ComentService'
+import { UserService } from '../../../services/UserService'
+import { UserDetails } from '../profil/UserDetails';
+import { CommentDetails } from './CommentDetails';
 
 
 export class PostDetails extends React.Component {
@@ -8,7 +11,8 @@ export class PostDetails extends React.Component {
         super(props)
         this.state = {
             post: [],
-            comment: []
+            comment: [],
+            userlistId: []
         }
     }
     componentDidMount() {
@@ -32,11 +36,23 @@ export class PostDetails extends React.Component {
                 this.setState({
                     comment
                 })
+
+
             })
-
-
-
     }
+    getUserOfComment() {
+        const list = this.state.userlistId.length
+        const listId = this.state.userlistId
+        if (list) {
+            listId.map(id => {
+
+                commentservices.fetchUserOfComment(id)
+
+            })
+        }
+    }
+
+
     renderSwitch(post) {
         switch (post.type) {
             case 'video':
@@ -67,7 +83,7 @@ export class PostDetails extends React.Component {
                     {
                         comment.map(com => (
                             <div>
-
+                                <CommentDetails id={com.id} />
                                 <p>{com.body} </p>
                             </div>
                         ))
