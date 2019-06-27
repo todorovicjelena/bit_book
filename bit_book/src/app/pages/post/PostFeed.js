@@ -13,20 +13,13 @@ export class PostFeed extends React.Component {
         }
     }
 
-    getToken() {
 
-        const registerToken = localStorage.getItem('postToken')
-
-        this.setState({
-            haveToken: registerToken
-        })
-    }
 
     componentDidMount() {
-        localStorage.removeItem('postToken')
+
 
         this.getPosts()
-        this.getToken()
+
     }
     getPosts() {
         postservices.FetchPosts()
