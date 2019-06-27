@@ -8,8 +8,8 @@ class RegisterService {
             password: pass
         }
         console.log(body);
-
-
+        
+        
         const register = 'https://book-api.hypetech.xyz/v1/auth/register'
         return fetch(register, {
             method: 'POST',
@@ -18,14 +18,17 @@ class RegisterService {
                 'Content-Type': 'application/json',
                 'x-api-key': 'B1tD3V'
             }
-
+            
         })
-            .then(response => response.json())
-            .then(res => {
-                localStorage.setItem('postToken', res.accessToken)
-            })
-
-
+        .then(response => {
+            console.log(response.status);
+            
+             if (response.status > 400){
+                return Promise.reject('greska')
+            }
+            return response.json()   
+            
+        })
     }
 
     fetchLogin = (email, password) => {
@@ -36,7 +39,7 @@ class RegisterService {
         }
         console.log(body);
 
-        const myStorage = window.localStorage;
+        
 
         const login = 'https://book-api.hypetech.xyz/v1/auth/login'
         return fetch(login, {
@@ -47,12 +50,12 @@ class RegisterService {
                 'x-api-key': 'B1tD3V'
             }
         })
-
-            .then(response => response.json())
-        // .then(res => {
-        //     myStorage.setItem('postToken', res.accessToke)
-
-        // })
+        .then(response => {
+            console.log(response);
+            
+            })
+            
+        
 
 
 

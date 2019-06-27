@@ -30,10 +30,14 @@ export class RegisterPage extends React.Component {
 
         const { name, email, password } = this.state
         registerService.fetchRegister(name, email, password)
-            .then(() => {
+            .then((res) => {
+                console.log(res);
+                
                 // redirect to login
             })
             .catch(error => {
+                console.log(error);
+                
                 // show error on screen
             })
 
