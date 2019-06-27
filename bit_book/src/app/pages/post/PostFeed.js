@@ -36,11 +36,17 @@ export class PostFeed extends React.Component {
     renderSwitch(post) {
         switch (post.type) {
             case 'video':
-                return <iframe src={post.videoUrl}> </iframe>
+                return <div className="videoFeed">
+                    <iframe className="videoFrame" src={post.videoUrl}></iframe>
+                </div>
             case 'image':
-                return <img src={post.url} />
+                return <div className="imgFeed">
+                    <img className="imgInFeed" src={post.url} />
+                </div>
             default:
-                return <p>{post.text}</p>
+                return <div className="pFeed">
+                    <p className="paragrafFeed">{post.text}</p>
+                </div>
         }
 
     }
