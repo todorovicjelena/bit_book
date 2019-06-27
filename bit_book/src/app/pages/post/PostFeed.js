@@ -13,20 +13,14 @@ export class PostFeed extends React.Component {
         }
     }
 
-    getToken() {
-
-        const registerToken = localStorage.getItem('postToken')
-
-        this.setState({
-            haveToken: registerToken
-        })
-    }
 
     componentDidMount() {
-        localStorage.removeItem('postToken')
+
 
         this.getPosts()
-        this.getToken()
+
+
+
     }
     getPosts() {
         postservices.FetchPosts()
@@ -38,6 +32,7 @@ export class PostFeed extends React.Component {
             })
 
     }
+
     renderSwitch(post) {
         switch (post.type) {
             case 'video':

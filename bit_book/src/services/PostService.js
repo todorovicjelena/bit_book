@@ -21,8 +21,6 @@ class PostService {
 
     }
     FetchSinglePosts = (id) => {
-        console.log(id);
-
         const request = `https://book-api.hypetech.xyz/v1/posts/${id}`
         return fetch(request, {
             headers: {

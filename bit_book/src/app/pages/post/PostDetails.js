@@ -1,5 +1,6 @@
 import React from 'react'
 import { postservices } from '../../../services/PostService'
+import { commentservices } from '../../../services/ComentService'
 
 
 export class PostDetails extends React.Component {
@@ -11,14 +12,23 @@ export class PostDetails extends React.Component {
     }
     componentDidMount() {
         this.getsingleUser()
+
     }
     getsingleUser() {
         const id = this.props.match.params.postId
         postservices.FetchSinglePosts(id)
             .then(post => {
                 this.setState({ post })
+                this.getComments(post.id)
 
             })
+    }
+    getComments(id) {
+        console.log(id);
+
+        commentservices.fetchService(id)
+
+
     }
     renderSwitch(post) {
         switch (post.type) {
@@ -36,8 +46,6 @@ export class PostDetails extends React.Component {
 
     render() {
         const post = this.state.post
-        console.log(post);
-
         if (!post) {
 
             return <p>loading page</p>
