@@ -6,8 +6,8 @@
 }
 
 .card {
-    height: 300px;
-    width: 60%;
+    height: 500px;
+    width: 50%;
     margin: 0 auto;
 }
  
@@ -32,7 +32,7 @@
 
 .postViewComments{
    
-    width:50%;
+    width:49%;
     margin:0 auto;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .postViewCommentsImg .imgPost {
-    width: 50%;
+    width: 49%;
     height: 600px;
 }
 
@@ -55,5 +55,28 @@
     color: white;
     padding: 9px;
 }
+
+.videoFrame{
+    width: 800px;
+    height:450px;
+    margin: 0 auto;
+    margin-left: 30px;
+    
+}
+.imgInFeed{
+    width: 800px;
+    height:450px;
+    margin: 0 auto;
+    margin-left: 30px;   
+}
+
+.paragrafFeed {
+    width: 80%;
+    height:250px;
+    margin: 0 auto;
+    margin-left: 130px;   
+}
+
+
 
 
