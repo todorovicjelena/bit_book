@@ -17,28 +17,38 @@ export class RegisterPage extends React.Component {
         this.handleUsername = this.handleUsername.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLogin = this.handleLogin.bind(this)
 
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        const errors = {}
         if (!this.validateRegister()) {
             return
         }
+
         const { name, email, password } = this.state
         registerService.fetchRegister(name, email, password)
+            .then((res) => {
+                console.log(res);
+                localStorage.setItem('accessToken', res.accessToken);
+                window.location.reload()
 
 
+                // redirect to login
+            })
+            .catch(error => {
+                errors = {
+                    login: error
+                }
+                this.setState({
+                    errors
+                })
 
-
-
-        // this.setState({
-        //     name: '',
-        //     email: '',
-        //     pass: ''
-
-        // })
+                // show error on screen
+            })
     }
 
     validateRegister() {
@@ -82,6 +92,9 @@ export class RegisterPage extends React.Component {
         })
 
     }
+    handleLogin() {
+        this.props.history.push('/login/')
+    }
 
 
 
@@ -90,25 +103,32 @@ export class RegisterPage extends React.Component {
         const { errors } = this.state
 
 
-        return <form onSubmit={this.handleSubmit}>
-            <label> Username:
+        return (
+            <>
+                <button onClick={this.handleLogin}>login</button>
+                <form onSubmit={this.handleSubmit}>
+
+                    <label> Username:
             <input type="text" value={this.state.name} onChange={this.handleUsername} />
-                <p>{errors.name}</p>
+                        <p>{errors.name}</p>
 
-            </label>
+                    </label>
 
-            <label>
-                Email:<input type="text" value={this.state.email} onChange={this.handleEmail} />
-                <p>{errors.email}</p>
+                    <label>
+                        Email:<input type="text" value={this.state.email} onChange={this.handleEmail} />
+                        <p>{errors.email}</p>
 
-            </label>
-            <label>pass:
+                    </label>
+                    <label>pass:
                 <input type='password' value={this.state.password} onChange={this.handlePassword} />
-                <p>{errors.password}</p>
+                        <p>{errors.password}</p>
 
-            </label>
+                    </label>
 
-            <input type="submit" value="Register" />
-        </form>
+                    <input type="submit" value="Register" />
+                    <p>{errors.login}</p>
+                </form>
+            </>
+        )
     }
 }

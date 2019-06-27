@@ -9,7 +9,8 @@ export class Login extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: {}
 
         }
 
@@ -18,17 +19,54 @@ export class Login extends React.Component {
         this.handleEmail = this.handleEmail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handleRegister = this.handleRegister.bind(this)
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
 
-
+        if (!this.validateLogin()) {
+            return
+        }
         const { email, password } = this.state
-        console.log(email);
+        let errors = {}
+
         registerService.fetchLogin(email, password)
+            .then((res) => {
+                console.log(res);
+                localStorage.setItem('accessToken', res.accessToken);
+                window.location.reload()
+            })
+            .catch(error => {
+                errors = {
+                    login: error
+                }
+                this.setState({
+                    errors
+                })
+            })
+
+
+
+    }
+    validateLogin() {
+
+        const email = this.state.email;
+        const pass = this.state.password;
+        const errors = {};
+
+
+        if (!email.includes('@')) {
+            errors.email = 'invalid email input'
+        }
+        if (pass.length < 5) {
+            errors.password = 'password must have at least 5 characters'
+        }
+        this.setState({ errors })
+
+
+        return Object.keys(errors).length === 0
 
     }
 
@@ -43,6 +81,10 @@ export class Login extends React.Component {
         this.setState({
             password: event.target.value
         })
+    }
+
+    handleRegister() {
+        this.props.history.push('/register/')
     }
 
 
@@ -64,18 +106,19 @@ export class Login extends React.Component {
                         <form onSubmit={this.handleSubmit} className="form col s12">
                             <div className="rowLoginRegister">
                                 <div className="login input-field col s6">
-                                    <input id="last_name" type="button" className="loginValidate" value="Login" />
+                                    <input type="button" className="loginValidate" value="Login" />
                                 </div>
                                 <div className="register input-field col s6">
-                                    <input id="last_name" type="button" className="registerValidate" value="Register" />
+                                    <input type="button" className="registerValidate" value="Register" onClick={this.handleRegister} />
                                 </div>
                             </div>
 
                             <div className="rowPass">
                                 <div className="pass email input-field col s12">
-                                    <input id="email" type="email" className="validate" value={this.state.email} onChange={this.handleEmail} />
+                                    <input type="text" className="validate" value={this.state.email} onChange={this.handleEmail} />
                                     <label>Email</label>
                                 </div>
+                                <p>{this.state.errors.email}</p>
 
                             </div>
                             <div className="rowEmail">
@@ -83,16 +126,22 @@ export class Login extends React.Component {
                                     <input type="password" className="validate" value={this.state.password} onChange={this.handlePassword} />
                                     <label>Password</label>
                                 </div>
+                                <p>{this.state.errors.password}</p>
+
 
                                 <div className="input-field col s6">
-                                    <input id="last_name" type="submit" className="loginGo" value="Login" />
+                                    <input type="submit" className="loginGo" value="Login" />
                                 </div>
                             </div>
 
                         </form>
                     </div>
                 </div>
+                <p>{this.state.errors.login}</p>
+
+
             </>
+
         )
     }
 }

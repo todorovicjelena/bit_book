@@ -16,9 +16,11 @@ import { RegisterPage } from '../app/pages/RegisterPage'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    const registerToken = localStorage.getItem('postToken')
-    const token = registerToken ? registerToken : ''
+
+    const registerToken = localStorage.getItem('accessToken')
+    const token = registerToken ? registerToken : null
     console.log(token);
+    console.log(registerToken);
 
     this.state = {
       token
@@ -27,8 +29,9 @@ class App extends React.Component {
   render() {
 
     const { token } = this.state
+    console.log(token);
 
-    if (token === null) {
+    if (!token) {
       return (
         <>
           <Switch>
@@ -49,8 +52,8 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route path='/people/:peopleId' component={UserDetails} />
-          <Route path='/people' component={Users} />
           <Route path='/post/:postId' component={PostDetails} />
+          <Route path='/people' component={Users} />
           <Route path='/posts/' component={PostFeed} />
           <Redirect to='/people' />
         </Switch>
