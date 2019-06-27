@@ -1,24 +1,41 @@
 import React from 'react'
 import { postservices } from '../../../services/PostService'
+import { commentservices } from '../../../services/ComentService'
 
 
 export class PostDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            post: []
+            post: [],
+            comment: []
         }
     }
     componentDidMount() {
         this.getsingleUser()
+
     }
     getsingleUser() {
         const id = this.props.match.params.postId
         postservices.FetchSinglePosts(id)
             .then(post => {
                 this.setState({ post })
+                this.getComments(post.id)
 
             })
+    }
+    getComments(id) {
+        console.log(id);
+
+        commentservices.fetchService(id)
+            .then(comment => {
+                this.setState({
+                    comment
+                })
+            })
+
+
+
     }
     renderSwitch(post) {
         switch (post.type) {
@@ -35,16 +52,28 @@ export class PostDetails extends React.Component {
 
 
     render() {
-        const post = this.state.post
-        console.log(post);
+        const { post, comment } = this.state
+        console.log(comment);
 
-        if (!post) {
+
+        if (!post && !comment) {
 
             return <p>loading page</p>
         }
         return (
             <>
                 <div className="content">{this.renderSwitch(post)}</div>
+                <div>
+                    {
+                        comment.map(com => (
+                            <div>
+
+                                <p>{com.body} </p>
+                            </div>
+                        ))
+
+                    }
+                </div>
             </>
         )
 

@@ -14,11 +14,12 @@ export class PostFeed extends React.Component {
     }
 
 
-
     componentDidMount() {
 
 
         this.getPosts()
+
+
 
     }
     getPosts() {
@@ -31,6 +32,7 @@ export class PostFeed extends React.Component {
             })
 
     }
+
     renderSwitch(post) {
         switch (post.type) {
             case 'video':
