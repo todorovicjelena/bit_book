@@ -40,11 +40,17 @@ export class PostDetails extends React.Component {
     renderSwitch(post) {
         switch (post.type) {
             case 'video':
-                return <iframe src={post.videoUrl}> </iframe>
+                return <div className="postViewComments">
+                    <iframe className="framePost" src={post.videoUrl}></iframe>
+                </div>
             case 'image':
-                return <img src={post.url} />
+                return <div className="postViewCommentsImg">
+                    <img className="imgPost" src={post.url} />
+                </div>
             default:
-                return <p>{post.text}</p>
+                return <div className="postViewComments">
+                    <p className="pPost">{post.text}</p>
+                </div>
         }
 
     }
@@ -66,9 +72,33 @@ export class PostDetails extends React.Component {
                 <div>
                     {
                         comment.map(com => (
-                            <div>
+                            <div className="postComments">
 
-                                <p>{com.body} </p>
+                                {/* <p className="commentsPost">{com.body} </p> */}
+
+
+
+
+                                < div className="col s12 m8 offset-m2 l6 offset-l3">
+                                    <div className="card-panel grey lighten-5 z-depth-1">
+                                        <div className="row valign-wrapper">
+                                            <div className="col s2">
+                                                <img src="" alt="" className="circle responsive-img" />
+                                            </div>
+                                            <div className="col s10">
+                                                <span className="black-text">
+                                                    {/* {user.name()} */}
+                                                </span>
+                                                <div>
+                                                    <span>{com.body}</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         ))
 
