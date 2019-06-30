@@ -29,7 +29,7 @@ export class PostDetails extends React.Component {
             })
     }
     getComments(id) {
-        console.log(id);
+       // console.log(id);
 
         commentservices.fetchService(id)
             .then(comment => {
@@ -83,7 +83,7 @@ export class PostDetails extends React.Component {
                     {
                         comment.map(com => (
                             <div>
-                                <CommentDetails id={com.id} />
+                                <CommentDetails id={com.userId} />
                                 <p>{com.body} </p>
                             </div>
                         ))

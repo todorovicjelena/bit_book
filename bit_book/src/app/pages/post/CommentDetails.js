@@ -14,6 +14,11 @@ export class CommentDetails extends React.Component {
         console.log(id);
 
         commentservices.fetchUserOfComment(id)
+        .then(user =>{
+            console.log(user);
+            
+            this.setState({user})
+        })
 
 
     }
@@ -21,7 +26,17 @@ export class CommentDetails extends React.Component {
         this.getUserData()
     }
     render() {
+       const {user} =(this.state);
+       if(!user){
+           return <p>people</p>
+       }
+        
 
-        return <p>detalji</p>
+        return(
+      <>
+            <img src = {user.avatarUrl}/>
+           
+            </>
+            ) 
+        }
     }
-}

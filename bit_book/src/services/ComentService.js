@@ -1,4 +1,5 @@
 import { MyComment } from '../entities/MyComment'
+import {MyUser } from '../entities/MyUser'
 
 class CommentService {
     fetchService(id) {
@@ -37,8 +38,14 @@ class CommentService {
 
         })
             .then(response => response.json())
-            .then(res => {
-                console.log(res);
+            .then(user => {
+               // console.log(user);
+                
+                const UserInfo = new MyUser(user)
+                console.log(UserInfo);
+                
+                return UserInfo
+                
 
             })
     }

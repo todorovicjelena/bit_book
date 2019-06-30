@@ -42,7 +42,7 @@ export class Users extends React.Component {
     render() {
 
         const users = this.state.users
-        console.log(users)
+        //console.log(users)
 
 
 
