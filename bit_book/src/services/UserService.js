@@ -33,10 +33,13 @@ export class UserService {
 
             .then(response => response.json())
             .then(user => {
+                console.log(user);
+
                 const UserInfo = new MyUser(user)
                 return UserInfo
             })
     }
+
 
 }
 

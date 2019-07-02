@@ -1,6 +1,9 @@
 import React from 'react'
 import { postservices } from '../../../services/PostService'
 import { commentservices } from '../../../services/ComentService'
+import { UserService } from '../../../services/UserService'
+import { UserDetails } from '../profil/UserDetails';
+import { CommentDetails } from './CommentDetails';
 
 
 export class PostDetails extends React.Component {
@@ -8,7 +11,8 @@ export class PostDetails extends React.Component {
         super(props)
         this.state = {
             post: [],
-            comment: []
+            comment: [],
+            userlistId: []
         }
     }
     componentDidMount() {
@@ -25,18 +29,30 @@ export class PostDetails extends React.Component {
             })
     }
     getComments(id) {
-        console.log(id);
+       // console.log(id);
 
         commentservices.fetchService(id)
             .then(comment => {
                 this.setState({
                     comment
                 })
+
+
             })
-
-
-
     }
+    getUserOfComment() {
+        const list = this.state.userlistId.length
+        const listId = this.state.userlistId
+        if (list) {
+            listId.map(id => {
+
+                commentservices.fetchUserOfComment(id)
+
+            })
+        }
+    }
+
+
     renderSwitch(post) {
         switch (post.type) {
             case 'video':
@@ -74,7 +90,7 @@ export class PostDetails extends React.Component {
                         comment.map(com => (
                             <div className="postComments">
 
-                                {/* <p className="commentsPost">{com.body} </p> */}
+                                
 
 
 
@@ -87,9 +103,10 @@ export class PostDetails extends React.Component {
                                             </div>
                                             <div className="col s10">
                                                 <span className="black-text">
-                                                    {/* {user.name()} */}
+                                                    
                                                 </span>
                                                 <div>
+                                                <CommentDetails id={com.userId} />
                                                     <span>{com.body}</span>
                                                 </div>
 
@@ -98,8 +115,8 @@ export class PostDetails extends React.Component {
                                     </div>
                                 </div>
 
-
-                            </div>
+                          </div>
+                           
                         ))
 
                     }
