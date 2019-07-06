@@ -105,9 +105,7 @@ export class Login extends React.Component {
                     <div className="row">
                         <form onSubmit={this.handleSubmit} className="form col s12">
                             <div className="rowLoginRegister">
-                                <div className="login input-field col s6">
-                                    <input type="button" className="loginValidate" value="Login" />
-                                </div>
+                                
                                 <div className="register input-field col s6">
                                     <input type="button" className="registerValidate" value="Register" onClick={this.handleRegister} />
                                 </div>

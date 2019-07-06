@@ -10,9 +10,11 @@ export class Users extends React.Component {
 
         this.state = {
             users: [],
-            onChange: null
+            search: null
 
         }
+        this.handleInput= this.handleInput.bind(this)
+        this.handleClear= this.handleClear.bind(this)
     }
 
 
@@ -31,13 +33,25 @@ export class Users extends React.Component {
 
     }
 
-    onChange(event) {
-
+    handleInput(event) {
+        const value = event.target.value
+        const users = this.state.users
         this.setState({
-            name: event.target.value
+            search:value
+        })
+
+      if(this.state.users.includes(this.state.search)){
+      
+        this.setState({
+            users
         })
     }
-
+    }
+    handleClear(e){
+        this.setState({
+            search:''
+        })
+    }
 
     render() {
 
@@ -57,9 +71,9 @@ export class Users extends React.Component {
                     <div className="nav-wrapper">
                         <form>
                             <div className="input-field">
-                                <input id="search" type="search" value="" />
-                                <label className="label-icon" for="search"><i className="material-icons">search</i></label>
-                                <i className="material-icons">x</i>
+                                <input onChange={this.handleInput} id="search" type="search" value={this.state.search} />
+                                <label className="label-icon" for="search"></label>
+                                <i onClick={this.handleClear} className="material-icons">x</i>
                             </div>
                         </form>
                     </div>
